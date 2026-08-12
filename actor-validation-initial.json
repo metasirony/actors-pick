@@ -1,0 +1,1240 @@
+{
+  "expectedKeys": 55,
+  "foundKeys": 55,
+  "missingKeys": [],
+  "unexpectedKeys": [],
+  "badCounts": [],
+  "totalEntries": 817,
+  "duplicateNames": [
+    {
+      "name": "Beyonce",
+      "initials": [
+        "b",
+        "bi"
+      ],
+      "lines": [
+        37,
+        370
+      ]
+    },
+    {
+      "name": "Buzz Lightyear",
+      "initials": [
+        "b",
+        "bu"
+      ],
+      "lines": [
+        44,
+        569
+      ]
+    },
+    {
+      "name": "Popeye",
+      "initials": [
+        "p",
+        "pu"
+      ],
+      "lines": [
+        68,
+        591
+      ]
+    },
+    {
+      "name": "Thor",
+      "initials": [
+        "t",
+        "tu"
+      ],
+      "lines": [
+        137,
+        659
+      ]
+    },
+    {
+      "name": "Tyrion Lannister",
+      "initials": [
+        "t",
+        "tu"
+      ],
+      "lines": [
+        138,
+        657
+      ]
+    },
+    {
+      "name": "Naruto Uzumaki",
+      "initials": [
+        "n",
+        "nu"
+      ],
+      "lines": [
+        153,
+        669
+      ]
+    },
+    {
+      "name": "Ludwig van Beethoven",
+      "initials": [
+        "l",
+        "lü"
+      ],
+      "lines": [
+        165,
+        926
+      ]
+    },
+    {
+      "name": "Luke Skywalker",
+      "initials": [
+        "l",
+        "lü"
+      ],
+      "lines": [
+        166,
+        921
+      ]
+    },
+    {
+      "name": "Legolas",
+      "initials": [
+        "l",
+        "lu"
+      ],
+      "lines": [
+        168,
+        694
+      ]
+    },
+    {
+      "name": "Loki",
+      "initials": [
+        "l",
+        "lu"
+      ],
+      "lines": [
+        169,
+        690
+      ]
+    },
+    {
+      "name": "Lucifer Morningstar",
+      "initials": [
+        "l",
+        "lü"
+      ],
+      "lines": [
+        172,
+        933
+      ]
+    },
+    {
+      "name": "Zeus",
+      "initials": [
+        "z",
+        "zu"
+      ],
+      "lines": [
+        183,
+        704
+      ]
+    },
+    {
+      "name": "Zordon",
+      "initials": [
+        "z",
+        "zu"
+      ],
+      "lines": [
+        189,
+        716
+      ]
+    },
+    {
+      "name": "Chucky",
+      "initials": [
+        "c",
+        "chu"
+      ],
+      "lines": [
+        209,
+        779
+      ]
+    },
+    {
+      "name": "Shaquille O’Neal",
+      "initials": [
+        "s",
+        "sh"
+      ],
+      "lines": [
+        222,
+        269
+      ]
+    },
+    {
+      "name": "Superman",
+      "initials": [
+        "s",
+        "cu"
+      ],
+      "lines": [
+        225,
+        725
+      ]
+    },
+    {
+      "name": "Sonic the Hedgehog",
+      "initials": [
+        "s",
+        "su"
+      ],
+      "lines": [
+        227,
+        740
+      ]
+    },
+    {
+      "name": "Sherlock Holmes",
+      "initials": [
+        "s",
+        "sh",
+        "shu"
+      ],
+      "lines": [
+        228,
+        275,
+        789
+      ]
+    },
+    {
+      "name": "Shrek",
+      "initials": [
+        "s",
+        "sh",
+        "cu",
+        "shu"
+      ],
+      "lines": [
+        229,
+        277,
+        730,
+        788
+      ]
+    },
+    {
+      "name": "Joker",
+      "initials": [
+        "zh",
+        "zhu"
+      ],
+      "lines": [
+        245,
+        755
+      ]
+    },
+    {
+      "name": "Chewbacca",
+      "initials": [
+        "ch",
+        "chu"
+      ],
+      "lines": [
+        260,
+        775
+      ]
+    },
+    {
+      "name": "Shaggy Rogers",
+      "initials": [
+        "sh",
+        "shu"
+      ],
+      "lines": [
+        276,
+        792
+      ]
+    },
+    {
+      "name": "Shazam",
+      "initials": [
+        "sh",
+        "shu"
+      ],
+      "lines": [
+        278,
+        804
+      ]
+    },
+    {
+      "name": "Goku",
+      "initials": [
+        "g",
+        "gu"
+      ],
+      "lines": [
+        308,
+        831
+      ]
+    },
+    {
+      "name": "Gandalf",
+      "initials": [
+        "g",
+        "gu"
+      ],
+      "lines": [
+        309,
+        834
+      ]
+    },
+    {
+      "name": "Godzilla",
+      "initials": [
+        "g",
+        "gu"
+      ],
+      "lines": [
+        310,
+        839
+      ]
+    },
+    {
+      "name": "Gru",
+      "initials": [
+        "g",
+        "gu"
+      ],
+      "lines": [
+        312,
+        844
+      ]
+    },
+    {
+      "name": "Gollum",
+      "initials": [
+        "g",
+        "gu"
+      ],
+      "lines": [
+        313,
+        838
+      ]
+    },
+    {
+      "name": "King Kong",
+      "initials": [
+        "k",
+        "ku"
+      ],
+      "lines": [
+        326,
+        851
+      ]
+    },
+    {
+      "name": "Kermit the Frog",
+      "initials": [
+        "k",
+        "ku"
+      ],
+      "lines": [
+        328,
+        850
+      ]
+    },
+    {
+      "name": "Harry Potter",
+      "initials": [
+        "h",
+        "hu"
+      ],
+      "lines": [
+        342,
+        867
+      ]
+    },
+    {
+      "name": "Homer Simpson",
+      "initials": [
+        "h",
+        "hu"
+      ],
+      "lines": [
+        344,
+        865
+      ]
+    },
+    {
+      "name": "Hulk",
+      "initials": [
+        "h",
+        "hu"
+      ],
+      "lines": [
+        345,
+        864
+      ]
+    },
+    {
+      "name": "Tinker Bell",
+      "initials": [
+        "ti",
+        "tu"
+      ],
+      "lines": [
+        453,
+        653
+      ]
+    },
+    {
+      "name": "Nala",
+      "initials": [
+        "ni",
+        "nu"
+      ],
+      "lines": [
+        475,
+        670
+      ]
+    },
+    {
+      "name": "Lara Croft",
+      "initials": [
+        "li",
+        "lu"
+      ],
+      "lines": [
+        488,
+        689
+      ]
+    },
+    {
+      "name": "Julia Roberts",
+      "initials": [
+        "ji",
+        "ju"
+      ],
+      "lines": [
+        499,
+        943
+      ]
+    },
+    {
+      "name": "Judy Garland",
+      "initials": [
+        "ji",
+        "ju"
+      ],
+      "lines": [
+        505,
+        939
+      ]
+    },
+    {
+      "name": "Jean Grey",
+      "initials": [
+        "ji",
+        "zhu"
+      ],
+      "lines": [
+        511,
+        768
+      ]
+    },
+    {
+      "name": "Xena",
+      "initials": [
+        "xi",
+        "xu"
+      ],
+      "lines": [
+        545,
+        973
+      ]
+    },
+    {
+      "name": "Nyan Cat",
+      "initials": [
+        "nu",
+        "nü"
+      ],
+      "lines": [
+        675,
+        909
+      ]
+    },
+    {
+      "name": "Luffy",
+      "initials": [
+        "lu",
+        "lü"
+      ],
+      "lines": [
+        688,
+        927
+      ]
+    },
+    {
+      "name": "Lumiere",
+      "initials": [
+        "lu",
+        "lü"
+      ],
+      "lines": [
+        699,
+        930
+      ]
+    },
+    {
+      "name": "Judy Hopps",
+      "initials": [
+        "zhu",
+        "ju"
+      ],
+      "lines": [
+        754,
+        948
+      ]
+    }
+  ],
+  "duplicateWikis": [
+    {
+      "wiki": "Beyoncé",
+      "initials": [
+        "b",
+        "bi",
+        "bi"
+      ],
+      "names": [
+        "Beyonce",
+        "Beyonce",
+        "Beyonce Knowles-Carter"
+      ],
+      "lines": [
+        37,
+        370,
+        378
+      ]
+    },
+    {
+      "wiki": "Buzz Lightyear",
+      "initials": [
+        "b",
+        "bu"
+      ],
+      "names": [
+        "Buzz Lightyear",
+        "Buzz Lightyear"
+      ],
+      "lines": [
+        44,
+        569
+      ]
+    },
+    {
+      "wiki": "Popeye",
+      "initials": [
+        "p",
+        "pu"
+      ],
+      "names": [
+        "Popeye",
+        "Popeye"
+      ],
+      "lines": [
+        68,
+        591
+      ]
+    },
+    {
+      "wiki": "Tyrion Lannister",
+      "initials": [
+        "t",
+        "tu"
+      ],
+      "names": [
+        "Tyrion Lannister",
+        "Tyrion Lannister"
+      ],
+      "lines": [
+        138,
+        657
+      ]
+    },
+    {
+      "wiki": "Naruto Uzumaki",
+      "initials": [
+        "n",
+        "nu"
+      ],
+      "names": [
+        "Naruto Uzumaki",
+        "Naruto Uzumaki"
+      ],
+      "lines": [
+        153,
+        669
+      ]
+    },
+    {
+      "wiki": "Ludwig van Beethoven",
+      "initials": [
+        "l",
+        "lü"
+      ],
+      "names": [
+        "Ludwig van Beethoven",
+        "Ludwig van Beethoven"
+      ],
+      "lines": [
+        165,
+        926
+      ]
+    },
+    {
+      "wiki": "Luke Skywalker",
+      "initials": [
+        "l",
+        "lü"
+      ],
+      "names": [
+        "Luke Skywalker",
+        "Luke Skywalker"
+      ],
+      "lines": [
+        166,
+        921
+      ]
+    },
+    {
+      "wiki": "Legolas",
+      "initials": [
+        "l",
+        "lu"
+      ],
+      "names": [
+        "Legolas",
+        "Legolas"
+      ],
+      "lines": [
+        168,
+        694
+      ]
+    },
+    {
+      "wiki": "Lucifer (DC Comics)",
+      "initials": [
+        "l",
+        "lü"
+      ],
+      "names": [
+        "Lucifer Morningstar",
+        "Lucifer Morningstar"
+      ],
+      "lines": [
+        172,
+        933
+      ]
+    },
+    {
+      "wiki": "Zeus",
+      "initials": [
+        "z",
+        "zu"
+      ],
+      "names": [
+        "Zeus",
+        "Zeus"
+      ],
+      "lines": [
+        183,
+        704
+      ]
+    },
+    {
+      "wiki": "Roronoa Zoro",
+      "initials": [
+        "z",
+        "zu"
+      ],
+      "names": [
+        "Zorro Roronoa",
+        "Zorro (One Piece)"
+      ],
+      "lines": [
+        187,
+        715
+      ]
+    },
+    {
+      "wiki": "Zordon",
+      "initials": [
+        "z",
+        "zu"
+      ],
+      "names": [
+        "Zordon",
+        "Zordon"
+      ],
+      "lines": [
+        189,
+        716
+      ]
+    },
+    {
+      "wiki": "Count Dracula",
+      "initials": [
+        "c",
+        "du"
+      ],
+      "names": [
+        "Count Dracula",
+        "Dracula"
+      ],
+      "lines": [
+        201,
+        640
+      ]
+    },
+    {
+      "wiki": "Jack Sparrow",
+      "initials": [
+        "c",
+        "zh"
+      ],
+      "names": [
+        "Captain Jack Sparrow",
+        "Jack Sparrow"
+      ],
+      "lines": [
+        202,
+        243
+      ]
+    },
+    {
+      "wiki": "Chucky (character)",
+      "initials": [
+        "c",
+        "chu"
+      ],
+      "names": [
+        "Chucky",
+        "Chucky"
+      ],
+      "lines": [
+        209,
+        779
+      ]
+    },
+    {
+      "wiki": "Shaquille O’Neal",
+      "initials": [
+        "s",
+        "sh"
+      ],
+      "names": [
+        "Shaquille O’Neal",
+        "Shaquille O’Neal"
+      ],
+      "lines": [
+        222,
+        269
+      ]
+    },
+    {
+      "wiki": "Sherlock Holmes",
+      "initials": [
+        "s",
+        "sh",
+        "shu"
+      ],
+      "names": [
+        "Sherlock Holmes",
+        "Sherlock Holmes",
+        "Sherlock Holmes"
+      ],
+      "lines": [
+        228,
+        275,
+        789
+      ]
+    },
+    {
+      "wiki": "Shrek",
+      "initials": [
+        "s",
+        "sh",
+        "cu",
+        "shu"
+      ],
+      "names": [
+        "Shrek",
+        "Shrek",
+        "Shrek",
+        "Shrek"
+      ],
+      "lines": [
+        229,
+        277,
+        730,
+        788
+      ]
+    },
+    {
+      "wiki": "Chewbacca",
+      "initials": [
+        "ch",
+        "chu"
+      ],
+      "names": [
+        "Chewbacca",
+        "Chewbacca"
+      ],
+      "lines": [
+        260,
+        775
+      ]
+    },
+    {
+      "wiki": "Shaggy Rogers",
+      "initials": [
+        "sh",
+        "shu"
+      ],
+      "names": [
+        "Shaggy Rogers",
+        "Shaggy Rogers"
+      ],
+      "lines": [
+        276,
+        792
+      ]
+    },
+    {
+      "wiki": "Shazam (DC Comics)",
+      "initials": [
+        "sh",
+        "shu"
+      ],
+      "names": [
+        "Shazam",
+        "Shazam"
+      ],
+      "lines": [
+        278,
+        804
+      ]
+    },
+    {
+      "wiki": "Goku",
+      "initials": [
+        "g",
+        "gu"
+      ],
+      "names": [
+        "Goku",
+        "Goku"
+      ],
+      "lines": [
+        308,
+        831
+      ]
+    },
+    {
+      "wiki": "Gandalf",
+      "initials": [
+        "g",
+        "gu"
+      ],
+      "names": [
+        "Gandalf",
+        "Gandalf"
+      ],
+      "lines": [
+        309,
+        834
+      ]
+    },
+    {
+      "wiki": "Godzilla",
+      "initials": [
+        "g",
+        "gu"
+      ],
+      "names": [
+        "Godzilla",
+        "Godzilla"
+      ],
+      "lines": [
+        310,
+        839
+      ]
+    },
+    {
+      "wiki": "Gru (Despicable Me)",
+      "initials": [
+        "g",
+        "gu"
+      ],
+      "names": [
+        "Gru",
+        "Gru"
+      ],
+      "lines": [
+        312,
+        844
+      ]
+    },
+    {
+      "wiki": "Gollum",
+      "initials": [
+        "g",
+        "gu"
+      ],
+      "names": [
+        "Gollum",
+        "Gollum"
+      ],
+      "lines": [
+        313,
+        838
+      ]
+    },
+    {
+      "wiki": "King Kong",
+      "initials": [
+        "k",
+        "ku"
+      ],
+      "names": [
+        "King Kong",
+        "King Kong"
+      ],
+      "lines": [
+        326,
+        851
+      ]
+    },
+    {
+      "wiki": "Kermit the Frog",
+      "initials": [
+        "k",
+        "ku",
+        "ku"
+      ],
+      "names": [
+        "Kermit the Frog",
+        "Kermit the Frog",
+        "Kermit"
+      ],
+      "lines": [
+        328,
+        850,
+        859
+      ]
+    },
+    {
+      "wiki": "Harry Potter (character)",
+      "initials": [
+        "h",
+        "hu"
+      ],
+      "names": [
+        "Harry Potter",
+        "Harry Potter"
+      ],
+      "lines": [
+        342,
+        867
+      ]
+    },
+    {
+      "wiki": "Homer Simpson",
+      "initials": [
+        "h",
+        "hu"
+      ],
+      "names": [
+        "Homer Simpson",
+        "Homer Simpson"
+      ],
+      "lines": [
+        344,
+        865
+      ]
+    },
+    {
+      "wiki": "Pink (singer)",
+      "initials": [
+        "pi",
+        "pi"
+      ],
+      "names": [
+        "Pink",
+        "P!nk"
+      ],
+      "lines": [
+        389,
+        394
+      ]
+    },
+    {
+      "wiki": "Padmé Amidala",
+      "initials": [
+        "pi",
+        "qu"
+      ],
+      "names": [
+        "Padme Amidala",
+        "Queen Amidala"
+      ],
+      "lines": [
+        402,
+        962
+      ]
+    },
+    {
+      "wiki": "Tinker Bell",
+      "initials": [
+        "ti",
+        "tu"
+      ],
+      "names": [
+        "Tinker Bell",
+        "Tinker Bell"
+      ],
+      "lines": [
+        453,
+        653
+      ]
+    },
+    {
+      "wiki": "Nala (The Lion King)",
+      "initials": [
+        "ni",
+        "nu"
+      ],
+      "names": [
+        "Nala",
+        "Nala"
+      ],
+      "lines": [
+        475,
+        670
+      ]
+    },
+    {
+      "wiki": "Lara Croft",
+      "initials": [
+        "li",
+        "lu",
+        "lu"
+      ],
+      "names": [
+        "Lara Croft",
+        "Lara Croft",
+        "Lara Croft (Tomb Raider)"
+      ],
+      "lines": [
+        488,
+        689,
+        698
+      ]
+    },
+    {
+      "wiki": "Julia Roberts",
+      "initials": [
+        "ji",
+        "ju"
+      ],
+      "names": [
+        "Julia Roberts",
+        "Julia Roberts"
+      ],
+      "lines": [
+        499,
+        943
+      ]
+    },
+    {
+      "wiki": "Judy Garland",
+      "initials": [
+        "ji",
+        "ju"
+      ],
+      "names": [
+        "Judy Garland",
+        "Judy Garland"
+      ],
+      "lines": [
+        505,
+        939
+      ]
+    },
+    {
+      "wiki": "Xena: Warrior Princess",
+      "initials": [
+        "xi",
+        "xu"
+      ],
+      "names": [
+        "Xena",
+        "Xena"
+      ],
+      "lines": [
+        545,
+        973
+      ]
+    },
+    {
+      "wiki": "Wolverine (character)",
+      "initials": [
+        "wu",
+        "wu"
+      ],
+      "names": [
+        "Wolverine",
+        "Wolverine (X-Men)"
+      ],
+      "lines": [
+        550,
+        563
+      ]
+    },
+    {
+      "wiki": "Bender (Futurama)",
+      "initials": [
+        "bu",
+        "bu"
+      ],
+      "names": [
+        "Bender",
+        "Bender Rodriguez"
+      ],
+      "lines": [
+        574,
+        579
+      ]
+    },
+    {
+      "wiki": "Princess Fiona",
+      "initials": [
+        "pu",
+        "fu"
+      ],
+      "names": [
+        "Princess Fiona",
+        "Fiona"
+      ],
+      "lines": [
+        596,
+        620
+      ]
+    },
+    {
+      "wiki": "Mario",
+      "initials": [
+        "mu",
+        "cu"
+      ],
+      "names": [
+        "Mario",
+        "Super Mario"
+      ],
+      "lines": [
+        603,
+        724
+      ]
+    },
+    {
+      "wiki": "Nyan Cat",
+      "initials": [
+        "nu",
+        "nü"
+      ],
+      "names": [
+        "Nyan Cat",
+        "Nyan Cat"
+      ],
+      "lines": [
+        675,
+        909
+      ]
+    },
+    {
+      "wiki": "Monkey D. Luffy",
+      "initials": [
+        "lu",
+        "lü"
+      ],
+      "names": [
+        "Luffy",
+        "Luffy"
+      ],
+      "lines": [
+        688,
+        927
+      ]
+    },
+    {
+      "wiki": "Lumière (Beauty and the Beast)",
+      "initials": [
+        "lu",
+        "lü"
+      ],
+      "names": [
+        "Lumiere",
+        "Lumiere"
+      ],
+      "lines": [
+        699,
+        930
+      ]
+    },
+    {
+      "wiki": "Sonic the Hedgehog",
+      "initials": [
+        "cu",
+        "su"
+      ],
+      "names": [
+        "Sonic",
+        "Sonic the Hedgehog"
+      ],
+      "lines": [
+        720,
+        740
+      ]
+    },
+    {
+      "wiki": "Judy Hopps",
+      "initials": [
+        "zhu",
+        "ju"
+      ],
+      "names": [
+        "Judy Hopps",
+        "Judy Hopps"
+      ],
+      "lines": [
+        754,
+        948
+      ]
+    },
+    {
+      "wiki": "Grinch",
+      "initials": [
+        "gu",
+        "xu"
+      ],
+      "names": [
+        "Grinch",
+        "Xmas Grinch"
+      ],
+      "lines": [
+        843,
+        986
+      ]
+    }
+  ]
+}
