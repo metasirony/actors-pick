@@ -279,3 +279,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.status(500).json({ error: e instanceof Error ? e.message : 'Unknown error' })
   }
 }
+
+// redeploy trigger 2026-08-12T16:08:38Z
