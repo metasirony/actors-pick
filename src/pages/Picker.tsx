@@ -243,6 +243,7 @@ export function Picker({ initialId, assignment, onBack, onChoose, onClear }: Pro
               wiki={item.wiki}
               hint={item.hint}
               selected={assignment?.name === item.name}
+              keepWithoutPhoto={!!item.custom}
               onChoose={(photoUrl) => handleChoose(item, photoUrl)}
             />
           ))}

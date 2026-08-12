@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 /**
  * Vercel serverless — GEMINI_API_KEY in Project Settings (never in client).
- * Model: gemini-3.5-flash-lite (fast / cheap tier for high-throughput).
+ * Model: gemini-3.5-flash-lite
  * Docs: https://ai.google.dev/gemini-api/docs/models
  */
 
@@ -11,116 +11,144 @@ const MODEL = 'gemini-3.5-flash-lite'
 const SYSTEM = `You are a casting assistant for the Mandarin Blueprint "Hanzi Movie Method".
 
 GOAL
-Suggest 10 globally famous people or characters the learner can lock to ONE pinyin initial.
-Each pick must be easy to remember as a movie "actor" for that initial.
+Suggest 10 options the learner can lock to ONE pinyin initial. Every pick must be
+easy to remember as a "movie actor" face for that initial.
 
-PHONETIC RULES (most important)
-- Match by SOUND, not spelling. The first stressed syllable (or a well-known nickname/role) must sound like the pinyin initial.
-- Examples of good phonetic links:
-  - initial "zh" → Joe Rogan (Joe ~ "joh/zh-ish"), Jackie Chan
-  - initial "s" → Sylvester Stallone, Shakira
-  - initial "r" → Robert Downey Jr., Rihanna
-  - initial "xi" → Scarlett Johansson (Scar- ~ xi-ish), Zendaya is WRONG for xi
-  - initial "b" → Brad Pitt, Batman (role OK if category allows)
-  - initial "ø" (null/zero initial) → names starting with a vowel sound: Iron Man, Oprah, Elon Musk, Audrey Hepburn
-- Prefer the START of the common English name / stage name / iconic role.
-- Multi-syllable pinyin (yi, bi, wu, zhu, nü, lü, ju…) should match the WHOLE syllable sound, not just the first letter.
-  - "zhu" → Jude Law, Judi Dench, Jupiter (character) — NOT "Zhang" unless the English call-name starts with ju/zhu
-  - "nü" / "lü" → names with "new/nyu/nü" or "loo/lü/lu" + ü-ish quality (e.g. Newt Scamander, Luna Lovegood for lu/lü-ish when category fits)
-- Write hint as a short English cue: which part of the name sounds like the initial (e.g. "Brad — 'buh'", "Scar-lett ~ xi").
+PHONETIC RULES (highest priority)
+- Match by SOUND, not spelling. First stressed syllable of the common English
+  name / stage name must sound like the pinyin initial.
+- Multi-syllable initials (yi, bi, wu, zhu, nü, ju…) must match the WHOLE syllable.
+- hint = short cue of the sound link, e.g. "Brad — 'buh'", "Scar-lett ~ xi".
+- initial "ø" (null): vowel-onset names (A/E/I/O/U) — Oprah, Elon, Iron Man (live-action).
 
-FAME RULES
-- Only household names: A-list film/TV, top musicians, iconic athletes, legendary historical figures, or globally known fictional characters.
-- Prefer faces most adults would recognize from a photo.
-- Avoid obscure YouTubers, minor supporting cast, niche influencers, or names only famous in one small country unless truly international.
-- Prefer living or widely depicted people so Wikipedia has a portrait.
+FAME RULES — MAINSTREAM NOW
+- Prioritize CURRENT mainstream fame (roughly last ~15 years of pop culture):
+  A-list film/TV actors, chart-topping musicians, superstar athletes, mega-streamers
+  / global celebrities adults would recognize from a photo TODAY.
+- Prefer living people with strong English Wikipedia portrait pages.
+- Avoid: obscure supporting cast, niche influencers, one-country-only fame,
+  ancient history unless still a household name (e.g. Einstein OK, random kings no).
+- Include a MIX: not only film actors — musicians, athletes, hosts, internet-famous
+  celebrities are welcome when globally known.
+- FRESHNESS for roles: if you use a live-action ROLE, pick ones from recent /
+  still-iconic franchises (MCU, recent Bond, Dune, Wednesday, Squid Game, etc.),
+  not dusty deep-cut characters few people under 40 know.
 
-CATEGORY RULES (strict — wrong category = invalid)
-- male: real men OR live-action male roles/aliases (e.g. Tony Stark, James Bond). No anime-only, no real women.
-- female: real women OR live-action female roles/aliases (e.g. Wonder Woman as Gal Gadot OK if you list the actress OR the role consistently). No anime-only, no real men.
-- fictional: ONLY anime / cartoon / game / myth / comic characters that are NOT primarily known as real-world celebrities. Do NOT return real actors here.
-- wildcard: anything memorable (real or fictional) with a strong phonetic link.
+CATEGORY RULES (strict)
 
-NAME FIELD
-- Use the common English billing name the learner would search (e.g. "Robert Downey Jr.", "Scarlet Witch" only if fictional category).
-- Roles/aliases allowed when they are more memorable than the legal name, but do not assign the same real person under many different initials in one batch.
-- wiki: exact English Wikipedia page title if you know it; else the same as name.
-- Never invent nonsense names.
+male
+- REAL MEN (actors, musicians, athletes, celebs) are the default and preferred.
+- Live-action male ROLES allowed only if the role is more memorable than the
+  actor AND it is clearly live-action (MCU, Bond, etc.).
+- When using a role, DISAMBIGUATE in name:
+  prefer "Henry Cavill as Superman" or just the actor "Henry Cavill",
+  NEVER bare "Superman" / "Batman" / "Spider-Man" (those are ambiguous —
+  comic, cartoon, AND live-action).
+- NO pure cartoon / anime / game-only characters. No Muppets. No CGI-only mascots.
+
+female
+- Same as male but for women / live-action female roles.
+- Prefer real women (Taylor Swift, Zendaya, Margot Robbie, etc.).
+- Roles: "Gal Gadot as Wonder Woman" or "Gal Gadot" — not bare "Wonder Woman".
+- NO anime-only / cartoon-only characters.
+
+fictional  ← ANIME-FIRST
+- DEFAULT to ANIME (and close cousins: manga, popular Japanese game characters
+  with a clear face). Roughly 7–8 of 10 should be anime/manga.
+- Fill the rest with globally famous cartoons, games, or comics IF needed.
+- Must be FICTIONAL characters, not real celebrities.
+- Prefer faces with a well-known design (Goku, Luffy, Gojo, Mikasa, Pikachu…).
+- Do NOT return real actors here.
+
+wildcard
+- Anything memorable with a strong phonetic link (real OR fictional).
+- Still prefer mainstream recognizability.
+
+DISAMBIGUATION (critical)
+Characters that exist as BOTH actor-roles AND cartoons (Superman, Batman, Spider-Man,
+Elsa, Barbie, Sonic…) must NEVER appear as a bare name in male/female.
+- male/female → real person, or "Actor as Role"
+- fictional → the animated/anime/game version, and put that in wiki title if possible
+  (e.g. "Spider-Man (Insomniac Games)" or anime title)
+
+NAME + WIKI
+- name: common English billing the learner would recognize
+- wiki: exact English Wikipedia page title that has a PORTRAIT/thumbnail
+  (actor page, not a disambiguation page, not a film title)
+- Never invent people. Never repeat the exclude list (case-insensitive).
 
 OUTPUT
-Return ONLY a JSON array of exactly 10 objects (no markdown fences, no commentary):
-[{"name":"…","wiki":"…","hint":"…"}]
-
-Never include anyone from the exclude list (case-insensitive). Prefer variety (mix actors, musicians, athletes, iconic roles) while staying in-category.`
+Return ONLY a JSON array of exactly 10 objects (no markdown):
+[{"name":"…","wiki":"…","hint":"…"}]`
 
 function categoryBrief(category: string, initial: string): string {
   const map: Record<string, string> = {
-    male: `CATEGORY = male → only real men or live-action male heroes/roles. Initial "${initial}".`,
-    female: `CATEGORY = female → only real women or live-action female heroes/roles. Initial "${initial}".`,
-    fictional: `CATEGORY = fictional → only anime/cartoon/game/myth/comic characters (not real celebrities). Initial "${initial}".`,
-    wildcard: `CATEGORY = wildcard → any memorable face/character. Initial "${initial}".`,
+    male: `CATEGORY=male. Prefer REAL mainstream men (actors/musicians/athletes/celebs of today). Live-action roles only if disambiguated as "Actor as Role". NO anime/cartoon-only. Initial "${initial}".`,
+    female: `CATEGORY=female. Prefer REAL mainstream women celebs of today. Roles only as "Actress as Role". NO anime/cartoon-only. Initial "${initial}".`,
+    fictional: `CATEGORY=fictional. ANIME-FIRST (majority anime/manga). Rest: famous cartoon/game. NO real celebrities. Initial "${initial}".`,
+    wildcard: `CATEGORY=wildcard. Any memorable mainstream face/character. Initial "${initial}".`,
   }
-  return map[category] || `CATEGORY = ${category}. Initial "${initial}".`
+  return map[category] || `CATEGORY=${category}. Initial "${initial}".`
 }
 
 function phoneticGuide(initial: string): string {
   const i = initial.toLowerCase()
   const guides: Record<string, string> = {
-    ø: 'Null initial: vowel-onset names (A/E/I/O/U sounds) — Oprah, Iron Man, Elon, Audrey, Ethan.',
-    b: 'buh/bee — Brad, Bruce, Ben, Beyoncé (if female cat), Batman.',
-    p: 'puh/pee — Peter, Paul, Penelope, Pikachu (fictional).',
-    m: 'muh/mee — Michael, Morgan, Meryl, Mario.',
-    f: 'fuh — Frank, Ford, Fiona, Frodo.',
-    d: 'duh/dee — Daniel, Dwayne, Diana, Dory.',
-    t: 'tuh/tee — Tom, Tony Stark, Taylor, Thor.',
-    n: 'nuh/nee — Nick, Neo, Natalie, Nemo.',
-    l: 'luh/lee — Leonardo, Liam, Luna, Link.',
-    z: 'dz/zuh — Zac, Zendaya (female), Zorro.',
-    c: 'ts-ish / suh-adjacent — Cesar, Cillian, Cinderella; favor "ts/c" onset.',
-    s: 'sss — Sam, Stallone, Scarlett only if s-onset is clear; Shakira, Sonic.',
-    zh: 'j/zh — Joe, Jude, Jackie, George (soft j), Jarvis.',
-    ch: 'ch — Charlie, Chris, Chuck, Chewbacca.',
-    sh: 'sh — Shawn, Shakira, Sherlock, Shrek.',
-    r: 'r — Robert, Ryan, Rihanna, Rocky.',
-    g: 'guh — George, Gandalf, Goku (fictional).',
-    k: 'kuh — Keanu, Kevin, Katniss, Kirby.',
-    h: 'huh — Harry, Hugh, Hermione, Hulk.',
-    yi: 'ee / yi — Ian, Yelena, Eevee, Yoda-ish "ee"; NOT random Y unless ee-glide.',
-    bi: 'bee — Beatrice, Beyoncé, Beast, BB-8-ish only if "bee".',
-    pi: 'pee — Peter Parker short Pee?, Pink, Pikachu, Peach.',
-    mi: 'mee — Mila, Michelle, Minnie, Mario "mi".',
-    di: 'dee — Diana, Dicaprio as Dee?, Dory, Dio.',
-    ti: 'tee — Tilda, Timothée, Tinker Bell, Teemo.',
-    ni: 'nee — Nicole, Neo, Nia, Nemo.',
-    li: 'lee — Lisa, Leonardo short Lee, Link, Elsa no; prefer Lee/Li onset.',
-    ji: 'jee — Gina only if jee; Jean, Gigi, Giyu (fictional), Jesus in some accents — prefer clear "jee".',
-    qi: 'chee — Chiara, Cheadle, Chi-Chi, Q from Bond is weak; prefer chee/qi onset.',
-    xi: 'shee/see/xi — Scarlett (Scar~), She-Hulk, Ciri, C-3PO weak; favor shee/xi.',
-    wu: 'woo — Woody, Wolverine, Wukong, Ursula no.',
-    bu: 'boo — Bruce "Boo"?, Buzz, Boo (Monsters), Buddha.',
-    pu: 'poo/pu — Po (Kung Fu Panda), Pumbaa, Putin only if male+famous — prefer Po/Pu.',
-    mu: 'moo — Mulan, Moana, Mufasa, Muhammad Ali.',
-    fu: 'foo — Fox, Fury, Fù characters; Foo Fighters only as brand-weak — prefer Foo/Fu onset names.',
-    du: 'doo — Dumbledore, Doom, Dua (female), Dude.',
-    tu: "too — TChalla weak; prefer Toad, Tutankhamun, Two-Face.",
-    nu: 'noo — Newt, No-Face, Nutella no; Newt Scamander, Noa.',
-    lu: 'loo — Luke, Luna, Luigi, Luffy.',
-    zu: 'zoo/dzu — Zeus, Zuko, Zooey.',
-    cu: 'tsoo/coo — Cooper, Cupid, Coolio.',
-    su: 'soo — Susan, Superman, Sulu, Suzy.',
-    zhu: 'joo/jew — Jude, Judi, Jupiter, Zuko weaker; Jude Law, Judy Hopps.',
-    chu: 'choo — Cho Chang, Chewbacca, Chuck.',
-    shu: 'shoo — Shuri, Shohei, Shrek "sh", Shu characters.',
-    ru: 'roo — Ruby, Ruth, Rubeus, Groot "roo" weak — Ruby Rose, Robin Hood roo?.',
-    gu: 'goo — Goku, Goofy, Goodall.',
-    ku: 'koo — Coolio, Kratos, Cookie Monster, Kujo.',
-    hu: 'hoo — Hulk, Hook, Whoopi (hu/hoo), Hugh.',
-    yu: 'yoo — Yuki, Yoda "yo", Ursula no; Yuri, Yuh- names, YouTube mascots.',
-    nü: 'nyoo/nü — Newt, Nuclear- nicknames, Nüwa (myth), "new" onset.',
-    lü: 'lyoo/lü — Luke weak; prefer Lou/Lü/Ly — Lyanna, Lucius, Luffy lyoo-ish carefully.',
-    ju: 'jyoo/joo — Jude, Judi, Jupiter, Jinx.',
-    qu: 'chyoo/qyu — Q from Bond, Quinn, Cupid chyoo?, Quorra.',
-    xu: 'shyoo/syu — Shohei, Shu, Susan weak; prefer Shu/Xu onset or "shoe".',
+    ø: 'Vowel onset: Oprah, Elon, Austin, Idris, Usher, Ethan, Ariana (if cat allows).',
+    b: 'buh/bee — Brad, Bad Bunny, Bruno, Billie (female), Bakugo (fictional).',
+    p: 'puh — Pedro, Post Malone, Paul, Pikachu (fictional).',
+    m: 'muh — Michael B. Jordan, Messi, Morgan, Mikasa (fictional).',
+    f: 'fuh — Timothée no; Frank Ocean, Future, Finn, Luffy no — F onset.',
+    d: 'duh/dee — Dwayne, Drake, Doja (female), Deku (fictional).',
+    t: 'tuh/tee — Timothée, Tom Holland, Travis Kelce, Tanjiro (fictional).',
+    n: 'nuh — Noah, Neymar, Nicki (female), Naruto (fictional).',
+    l: 'luh/lee — Leonardo, LeBron, Lana (female), Luffy (fictional).',
+    z: 'zuh — Zac, Zendaya (female), Zlatan, Zenitsu (fictional).',
+    c: 'k/s onset — Cillian, Chris Evans, Conor, Cillian; not random S names.',
+    s: 'sss — Sydney Sweeney (female cat), Simu Liu, Sabrina, Saitama (fictional).',
+    zh: 'j/zh — Joe Rogan, John Cena, Jack Black, Jotaro (fictional).',
+    ch: 'ch — Chris Hemsworth, Charlie Puth, Cho (fictional).',
+    sh: 'sh — Shawn Mendes, Shohei Ohtani, Shrek only if fictional cat.',
+    r: 'r — Ryan Reynolds, Rihanna (female), Rodrigo, Rengoku (fictional).',
+    g: 'guh — Glen Powell, Gordon Ramsay; Goku only if fictional.',
+    k: 'kuh — Keanu, Kylian Mbappé, Kendrick; Killua if fictional.',
+    h: 'huh — Harry Styles, Henry Cavill, Haaland; Hinata if fictional.',
+    yi: 'ee — Zendaya weak; Eva, Emma, Billie no — ee/yi onset: Eve, Ayo Edebiri-ish, Yelena.',
+    bi: 'bee — Billie Eilish, Bella Ramsey, Beabadoobee.',
+    pi: 'pee — Billie no; P!nk, Phoebe Bridgers, Pikachu if fictional.',
+    mi: 'mee — Millie Bobby Brown, Miley, Megan Thee Stallion, Mikasa if fictional.',
+    di: 'dee — Dua Lipa, Zendaya no; Sydney no — Dee: Dua, Doja, Daisy Edgar-Jones.',
+    ti: 'tee — Taylor Swift, Tyla, Timothée no (male).',
+    ni: 'nee — Nicole, Nicki Minaj, Nina, Nezuko (fictional).',
+    li: 'lee — Lisa (BLACKPINK), Lily Collins, Lana Del Rey, Luffy no.',
+    ji: 'jee — Jenna Ortega, Jennifer Lawrence, Jennie (BLACKPINK).',
+    qi: 'chee — Charli XCX, Chloe Grace, Chihiro (fictional).',
+    xi: 'shee/xi — Sydney Sweeney, Selena Gomez, Scarlett Johansson, Shinobu (fictional).',
+    wu: 'woo — Woody, goofy no; for fictional: Wukong, for male rare — Will leave to model.',
+    bu: 'boo — for fictional majority anime with bu/boo.',
+    pu: 'poo/pu — Po only fictional; male rare.',
+    mu: 'moo — fictional: Muzan; male: maybe Muhammad- onset celebs.',
+    fu: 'foo — fictional preferred in u-series.',
+    du: 'doo — fictional + male Dua is female.',
+    tu: 'too — Tut, Toji (fictional).',
+    nu: 'noo — Newt; Nezuko is ni; fictional nu.',
+    lu: 'loo — Luffy, Lucy (cyberpunk) for fictional; Luke for male if male cat.',
+    zu: 'zoo — Zuko fictional.',
+    cu: 'coo — fictional cu.',
+    su: 'soo — Sukuna fictional; Susan for female wrong series.',
+    zhu: 'joo — Jude, Judi; Jujutsu characters for fictional.',
+    chu: 'choo — Cho, Chopper fictional.',
+    shu: 'shoo — Shuri live-action role disambiguate; fictional shu.',
+    ru: 'roo — Ruby, Rukia (fictional).',
+    gu: 'goo — Goku fictional primary for gu series.',
+    ku: 'koo — Kurapika, Killua; male: Kylian if k not ku.',
+    hu: 'hoo — Goofy no; Hu Tao fictional; Hugh for h not hu.',
+    yu: 'yoo — Yuuji, Yumeko fictional; Yuki.',
+    nü: 'nyoo/new — Newt, Nüwa myth, "new" onset celebs if wildcard/male careful.',
+    lü: 'lyoo — Luffy lyoo-ish weak; prefer Lü/Ly names or anime.',
+    ju: 'joo/jyoo — Jungkook, Jenna; Jotaro fictional.',
+    qu: 'chyoo — Quinn, Quavo; fictional qu.',
+    xu: 'shyoo — Shu, Shohei; fictional xu.',
   }
   return guides[i] || `Match English onset to pinyin "${initial}" by ear.`
 }
@@ -154,15 +182,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const excludeList = (Array.isArray(exclude) ? exclude : [])
     .map((e) => String(e).trim())
     .filter(Boolean)
-    .slice(0, 100)
+    .slice(0, 120)
 
   const userPrompt = [
     categoryBrief(category, initial),
-    `Pinyin initial to cast: "${initial}"`,
+    `Pinyin initial: "${initial}"`,
     `Phonetic guide: ${phoneticGuide(initial)}`,
-    `Already shown — DO NOT repeat (any spelling): ${excludeList.join(', ') || '(none)'}`,
-    `Return exactly 10 NEW globally famous options as a pure JSON array.`,
-    `Each object: name (billing name), wiki (EN Wikipedia title), hint (how it sounds like "${initial}").`,
+    `Already shown — do not repeat: ${excludeList.join(', ') || '(none)'}`,
+    `Return exactly 10 NEW mainstream options as a pure JSON array.`,
+    `Each: name, wiki (EN Wikipedia title with a portrait), hint (sound link to "${initial}").`,
+    category === 'fictional'
+      ? 'Reminder: ANIME-FIRST. No real people.'
+      : category === 'male' || category === 'female'
+        ? 'Reminder: real celebrities preferred; roles must be "Person as Role"; no bare superhero/cartoon names.'
+        : 'Reminder: memorable + phonetic.',
   ].join('\n')
 
   try {
@@ -171,12 +204,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        systemInstruction: {
-          parts: [{ text: SYSTEM }],
-        },
+        systemInstruction: { parts: [{ text: SYSTEM }] },
         contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
         generationConfig: {
-          temperature: 0.75,
+          temperature: 0.7,
           topP: 0.9,
           maxOutputTokens: 4096,
           responseMimeType: 'application/json',
@@ -186,7 +217,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (!gRes.ok) {
       const t = await gRes.text()
-      // common: 404 = model id wrong/unavailable on this key; 429 = quota
       res.status(502).json({
         error: `Gemini error ${gRes.status} (${MODEL}): ${t.slice(0, 400)}`,
       })
@@ -194,10 +224,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const gData = (await gRes.json()) as {
-      candidates?: {
-        content?: { parts?: { text?: string }[] }
-        finishReason?: string
-      }[]
+      candidates?: { content?: { parts?: { text?: string }[] } }[]
       error?: { message?: string }
     }
 
@@ -234,8 +261,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         hint: String(a.hint || '').trim(),
       }))
       .filter((a) => a.name.length > 1)
-      // de-dupe within batch
-      .filter((a, idx, all) => all.findIndex((b) => b.name.toLowerCase() === a.name.toLowerCase()) === idx)
+      .filter(
+        (a, idx, all) =>
+          all.findIndex((b) => b.name.toLowerCase() === a.name.toLowerCase()) === idx,
+      )
       .slice(0, 12)
 
     if (actors.length === 0) {
