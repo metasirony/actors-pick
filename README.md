@@ -10,15 +10,6 @@ Personal picker for **Mandarin Blueprint Hanzi Movie Method** actors (55 pinyin 
 - **Custom** name + **More** (Gemini via Vercel serverless — key stays on server)
 - Export / import JSON for backup or Anki prep
 
-## Local dev
-
-```bash
-npm install
-npm run dev
-```
-
-`More` only works after deploy with `GEMINI_API_KEY`, or with `vercel dev`.
-
 ## Deploy on Vercel
 
 1. Push this folder to GitHub (or use Vercel CLI).
@@ -29,21 +20,6 @@ npm run dev
 4. Deploy.
 
 The serverless function lives at `api/more.ts`. The browser never sees the key.
-
-### CLI alternative
-
-```bash
-npm i -g vercel
-vercel
-vercel env add GEMINI_API_KEY
-vercel --prod
-```
-
-## API note (Gemini vs OpenAI)
-
-- Mandarin Blueprint’s custom GPT **cannot** be called via OpenAI API.
-- Gemini Flash free tier is a good fit for “More” suggestions.
-- Key must live in Vercel env (not in frontend code / localStorage).
 
 ## Stack
 
